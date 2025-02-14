@@ -15,43 +15,43 @@ const QUESTIONS = [
     question: 'What is the core purpose of the app? What problem does it solve?',
     type: 'textarea'
   },
-  // {
-  //   id: 'targetAudience',
-  //   category: 'General Overview',
-  //   question: 'Who is the target audience for this app?',
-  //   type: 'textarea'
-  // },
-  // {
-  //   id: 'appType',
-  //   category: 'General Overview',
-  //   question: 'Will this be a web app, mobile app, or both?',
-  //   type: 'text'
-  // },
-  // {
-  //   id: 'inspiration',
-  //   category: 'General Overview',
-  //   question: 'Do you have any similar apps in mind for reference or inspiration?',
-  //   type: 'textarea'
-  // },
-  // // Tech Stack
-  // {
-  //   id: 'frontend',
-  //   category: 'Tech Stack',
-  //   question: 'What technologies or frameworks do you want to use for the front end (e.g., React, Vue, Next.js)?',
-  //   type: 'text'
-  // },
-  // {
-  //   id: 'backend',
-  //   category: 'Tech Stack',
-  //   question: 'What back-end technologies or frameworks do you prefer (e.g., Node.js, Django, Firebase)?',
-  //   type: 'text'
-  // },
-  // {
-  //   id: 'database',
-  //   category: 'Tech Stack',
-  //   question: 'What database solution do you want (e.g., PostgreSQL, MongoDB, Firebase)?',
-  //   type: 'text'
-  // },
+  {
+    id: 'targetAudience',
+    category: 'General Overview',
+    question: 'Who is the target audience for this app?',
+    type: 'textarea'
+  },
+  {
+    id: 'appType',
+    category: 'General Overview',
+    question: 'Will this be a web app, mobile app, or both?',
+    type: 'text'
+  },
+  {
+    id: 'inspiration',
+    category: 'General Overview',
+    question: 'Do you have any similar apps in mind for reference or inspiration?',
+    type: 'textarea'
+  },
+  // Tech Stack
+  {
+    id: 'frontend',
+    category: 'Tech Stack',
+    question: 'What technologies or frameworks do you want to use for the front end (e.g., React, Vue, Next.js)?',
+    type: 'text'
+  },
+  {
+    id: 'backend',
+    category: 'Tech Stack',
+    question: 'What back-end technologies or frameworks do you prefer (e.g., Node.js, Django, Firebase)?',
+    type: 'text'
+  },
+  {
+    id: 'database',
+    category: 'Tech Stack',
+    question: 'What database solution do you want (e.g., PostgreSQL, MongoDB, Firebase)?',
+    type: 'text'
+  },
   {
     id: 'auth',
     category: 'Tech Stack',
@@ -60,151 +60,151 @@ const QUESTIONS = [
     followUp: 'How should authentication work (e.g., email/password, social login, OAuth, magic links)?',
     followUpType: 'textarea'
   },
-  // // Core Features & Functionality
-  // {
-  //   id: 'mainFeatures',
-  //   category: 'Core Features & Functionality',
-  //   question: 'What are the main features the app must have? (List essential functionalities.)',
-  //   type: 'textarea'
-  // },
-  // {
-  //   id: 'userFlows',
-  //   category: 'Core Features & Functionality',
-  //   question: 'How should users interact with the app? Describe the main user flows.',
-  //   type: 'textarea'
-  // },
-  // {
-  //   id: 'userRoles',
-  //   category: 'Core Features & Functionality',
-  //   question: 'Will the app need to support multiple user roles (e.g., admin, regular user)?',
-  //   type: 'textarea'
-  // },
-  // {
-  //   id: 'fileUploads',
-  //   category: 'Core Features & Functionality',
-  //   question: 'Will users be able to upload files or media? If so, what types and formats?',
-  //   type: 'textarea'
-  // },
-  // {
-  //   id: 'payments',
-  //   category: 'Core Features & Functionality',
-  //   question: 'Will users need to make payments in the app? If yes, which payment processors should be supported (e.g., Stripe, PayPal)?',
-  //   type: 'textarea'
-  // },
-  // {
-  //   id: 'notifications',
-  //   category: 'Core Features & Functionality',
-  //   question: 'Should the app include push notifications, emails, or SMS alerts? If so, what kind?',
-  //   type: 'textarea'
-  // },
-  // // AI & Automation
-  // {
-  //   id: 'aiFeatures',
-  //   category: 'AI & Automation',
-  //   question: 'Should AI handle any part of the app\'s functionality? If yes, what features should AI power (e.g., chatbots, recommendations, summarization)?',
-  //   type: 'textarea'
-  // },
-  // {
-  //   id: 'externalApis',
-  //   category: 'AI & Automation',
-  //   question: 'Will the app integrate with external APIs or services? If so, which ones?',
-  //   type: 'textarea'
-  // },
-  // // Design & User Experience
-  // {
-  //   id: 'designStyle',
-  //   category: 'Design & User Experience',
-  //   question: 'Do you have a preferred design style? (Minimalist, modern, colorful, etc.)',
-  //   type: 'text'
-  // },
-  // {
-  //   id: 'uiFeatures',
-  //   category: 'Design & User Experience',
-  //   question: 'Do you need specific UI/UX features such as dark mode, animations, or accessibility options?',
-  //   type: 'textarea'
-  // },
-  // {
-  //   id: 'responsive',
-  //   category: 'Design & User Experience',
-  //   question: 'Should the app be responsive and mobile-friendly?',
-  //   type: 'text'
-  // },
-  // {
-  //   id: 'uiLibrary',
-  //   category: 'Design & User Experience',
-  //   question: 'Do you have a preferred UI library or component system (e.g., Material UI, Tailwind CSS, Bootstrap)?',
-  //   type: 'text'
-  // },
-  // // Deployment & Hosting
-  // {
-  //   id: 'deployment',
-  //   category: 'Deployment & Hosting',
-  //   question: 'Where do you want to deploy this app (e.g., Vercel, AWS, Firebase)?',
-  //   type: 'text'
-  // },
-  // {
-  //   id: 'cicd',
-  //   category: 'Deployment & Hosting',
-  //   question: 'Do you need CI/CD integration for automated deployment?',
-  //   type: 'text'
-  // },
-  // {
-  //   id: 'environments',
-  //   category: 'Deployment & Hosting',
-  //   question: 'Should the app support multiple environments (e.g., dev, staging, production)?',
-  //   type: 'text'
-  // },
-  // // Scalability & Performance
-  // {
-  //   id: 'userScale',
-  //   category: 'Scalability & Performance',
-  //   question: 'How many users do you expect initially? How many in the future?',
-  //   type: 'textarea'
-  // },
-  // {
-  //   id: 'trafficOptimization',
-  //   category: 'Scalability & Performance',
-  //   question: 'Should the app be optimized for high traffic and scalability?',
-  //   type: 'textarea'
-  // },
-  // {
-  //   id: 'performance',
-  //   category: 'Scalability & Performance',
-  //   question: 'Are there any performance concerns or speed optimizations you want to consider?',
-  //   type: 'textarea'
-  // },
-  // // Security & Privacy
-  // {
-  //   id: 'security',
-  //   category: 'Security & Privacy',
-  //   question: 'Are there any specific security measures you need (e.g., encryption, GDPR compliance)?',
-  //   type: 'textarea'
-  // },
-  // {
-  //   id: 'rbac',
-  //   category: 'Security & Privacy',
-  //   question: 'Should the app have role-based access control (RBAC)?',
-  //   type: 'yesno'
-  // },
-  // // Additional Considerations
-  // {
-  //   id: 'extraFeatures',
-  //   category: 'Additional Considerations',
-  //   question: 'Are there any extra features or customizations you\'d like to include?',
-  //   type: 'textarea'
-  // },
-  // {
-  //   id: 'timeline',
-  //   category: 'Additional Considerations',
-  //   question: 'What is your ideal timeline for building this app?',
-  //   type: 'text'
-  // },
-  // {
-  //   id: 'aiTestingDocs',
-  //   category: 'Additional Considerations',
-  //   question: 'Would you like AI to generate test cases and documentation for the app?',
-  //   type: 'yesno'
-  // },
+  // Core Features & Functionality
+  {
+    id: 'mainFeatures',
+    category: 'Core Features & Functionality',
+    question: 'What are the main features the app must have? (List essential functionalities.)',
+    type: 'textarea'
+  },
+  {
+    id: 'userFlows',
+    category: 'Core Features & Functionality',
+    question: 'How should users interact with the app? Describe the main user flows.',
+    type: 'textarea'
+  },
+  {
+    id: 'userRoles',
+    category: 'Core Features & Functionality',
+    question: 'Will the app need to support multiple user roles (e.g., admin, regular user)?',
+    type: 'textarea'
+  },
+  {
+    id: 'fileUploads',
+    category: 'Core Features & Functionality',
+    question: 'Will users be able to upload files or media? If so, what types and formats?',
+    type: 'textarea'
+  },
+  {
+    id: 'payments',
+    category: 'Core Features & Functionality',
+    question: 'Will users need to make payments in the app? If yes, which payment processors should be supported (e.g., Stripe, PayPal)?',
+    type: 'textarea'
+  },
+  {
+    id: 'notifications',
+    category: 'Core Features & Functionality',
+    question: 'Should the app include push notifications, emails, or SMS alerts? If so, what kind?',
+    type: 'textarea'
+  },
+  // AI & Automation
+  {
+    id: 'aiFeatures',
+    category: 'AI & Automation',
+    question: 'Should AI handle any part of the app\'s functionality? If yes, what features should AI power (e.g., chatbots, recommendations, summarization)?',
+    type: 'textarea'
+  },
+  {
+    id: 'externalApis',
+    category: 'AI & Automation',
+    question: 'Will the app integrate with external APIs or services? If so, which ones?',
+    type: 'textarea'
+  },
+  // Design & User Experience
+  {
+    id: 'designStyle',
+    category: 'Design & User Experience',
+    question: 'Do you have a preferred design style? (Minimalist, modern, colorful, etc.)',
+    type: 'text'
+  },
+  {
+    id: 'uiFeatures',
+    category: 'Design & User Experience',
+    question: 'Do you need specific UI/UX features such as dark mode, animations, or accessibility options?',
+    type: 'textarea'
+  },
+  {
+    id: 'responsive',
+    category: 'Design & User Experience',
+    question: 'Should the app be responsive and mobile-friendly?',
+    type: 'text'
+  },
+  {
+    id: 'uiLibrary',
+    category: 'Design & User Experience',
+    question: 'Do you have a preferred UI library or component system (e.g., Material UI, Tailwind CSS, Bootstrap)?',
+    type: 'text'
+  },
+  // Deployment & Hosting
+  {
+    id: 'deployment',
+    category: 'Deployment & Hosting',
+    question: 'Where do you want to deploy this app (e.g., Vercel, AWS, Firebase)?',
+    type: 'text'
+  },
+  {
+    id: 'cicd',
+    category: 'Deployment & Hosting',
+    question: 'Do you need CI/CD integration for automated deployment?',
+    type: 'text'
+  },
+  {
+    id: 'environments',
+    category: 'Deployment & Hosting',
+    question: 'Should the app support multiple environments (e.g., dev, staging, production)?',
+    type: 'text'
+  },
+  // Scalability & Performance
+  {
+    id: 'userScale',
+    category: 'Scalability & Performance',
+    question: 'How many users do you expect initially? How many in the future?',
+    type: 'textarea'
+  },
+  {
+    id: 'trafficOptimization',
+    category: 'Scalability & Performance',
+    question: 'Should the app be optimized for high traffic and scalability?',
+    type: 'textarea'
+  },
+  {
+    id: 'performance',
+    category: 'Scalability & Performance',
+    question: 'Are there any performance concerns or speed optimizations you want to consider?',
+    type: 'textarea'
+  },
+  // Security & Privacy
+  {
+    id: 'security',
+    category: 'Security & Privacy',
+    question: 'Are there any specific security measures you need (e.g., encryption, GDPR compliance)?',
+    type: 'textarea'
+  },
+  {
+    id: 'rbac',
+    category: 'Security & Privacy',
+    question: 'Should the app have role-based access control (RBAC)?',
+    type: 'yesno'
+  },
+  // Additional Considerations
+  {
+    id: 'extraFeatures',
+    category: 'Additional Considerations',
+    question: 'Are there any extra features or customizations you\'d like to include?',
+    type: 'textarea'
+  },
+  {
+    id: 'timeline',
+    category: 'Additional Considerations',
+    question: 'What is your ideal timeline for building this app?',
+    type: 'text'
+  },
+  {
+    id: 'aiTestingDocs',
+    category: 'Additional Considerations',
+    question: 'Would you like AI to generate test cases and documentation for the app?',
+    type: 'yesno'
+  },
   {
     id: 'additionalInfo',
     category: 'Additional Considerations',
