@@ -416,6 +416,22 @@ function App() {
     }
   }
 
+  const handleSkip = () => {
+    const currentQuestion = QUESTIONS[currentQuestionIndex]
+    
+    setAnswers(prev => ({
+      ...prev,
+      [currentQuestion.id]: "Question skipped – Use best judgment based on standard practices and similar apps."
+    }))
+
+    if (currentQuestionIndex < QUESTIONS.length - 1) {
+      setCurrentQuestionIndex(prev => prev + 1)
+      setInputValue('')
+    } else {
+      setShowResult(true)
+    }
+  }
+
   const currentQuestion = QUESTIONS[currentQuestionIndex]
 
   const renderInput = () => {
@@ -449,19 +465,21 @@ function App() {
 
     if (currentQuestion.type === 'yesno') {
       return (
-        <div className="flex gap-4 justify-center mt-6">
-          <button
-            onClick={() => handleAnswer('Yes')}
-            className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg transition-colors"
-          >
-            Yes
-          </button>
-          <button
-            onClick={() => handleAnswer('No')}
-            className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg transition-colors"
-          >
-            No
-          </button>
+        <div className="space-y-6">
+          <div className="flex gap-4 justify-center mt-6">
+            <button
+              onClick={() => handleAnswer('Yes')}
+              className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg transition-colors"
+            >
+              Yes
+            </button>
+            <button
+              onClick={() => handleAnswer('No')}
+              className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg transition-colors"
+            >
+              No
+            </button>
+          </div>
         </div>
       )
     }
@@ -564,12 +582,31 @@ ${formatPrompt(answers)}`,
                   </button>
                 )}
                 {(showFollowUp || currentQuestion.type !== 'yesno') && (
+                  <div className="flex gap-2">
+                    {!inputValue.trim() && (
+                      <button
+                        onClick={handleSkip}
+                        className="px-4 py-2 rounded bg-gray-600 hover:bg-gray-700 transition-colors"
+                      >
+                        Skip
+                      </button>
+                    )}
+                    {inputValue.trim() && (
+                      <button
+                        onClick={handleNext}
+                        className="px-4 py-2 rounded bg-blue-600 hover:bg-blue-700 transition-colors"
+                      >
+                        Next
+                      </button>
+                    )}
+                  </div>
+                )}
+                {currentQuestion.type === 'yesno' && (
                   <button
-                    onClick={handleNext}
-                    disabled={!inputValue.trim()}
-                    className="px-4 py-2 rounded bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                    onClick={handleSkip}
+                    className="px-4 py-2 rounded bg-gray-600 hover:bg-gray-700 transition-colors"
                   >
-                    Next
+                    Skip
                   </button>
                 )}
               </div>
