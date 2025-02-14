@@ -339,6 +339,8 @@ function App() {
   const [inputValue, setInputValue] = useState('')
   const [showFollowUp, setShowFollowUp] = useState(false)
   const inputRef = useRef(null)
+  const [aiResponse, setAiResponse] = useState('')
+  const [isGenerating, setIsGenerating] = useState(false)
 
   useEffect(() => {
     if (inputRef.current && !showResult) {
@@ -490,6 +492,46 @@ function App() {
     )
   }
 
+  const generateAIResponse = async () => {
+    setIsGenerating(true)
+    try {
+      const response = await fetch('https://api-inference.huggingface.co/models/HuggingFaceH4/zephyr-7b-beta', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${import.meta.env.VITE_HUGGING_FACE_TOKEN}`},
+        body: JSON.stringify({
+          inputs: `You are a helpful AI assistant specializing in software development. Please analyze this app requirements document and provide a detailed response with:
+1. A summary of the key features and requirements
+2. Suggested technical implementation details
+3. Potential challenges and considerations
+4. Next steps for development
+
+Here's the requirements document:
+
+${formatPrompt(answers)}`,
+          parameters: {
+            max_length: 2048,
+            temperature: 0.7,
+            top_p: 0.95,
+            return_full_text: false
+          }
+        })
+      })
+      
+      const data = await response.json()
+      if (data.error) {
+        throw new Error(data.error)
+      }
+      setAiResponse(data[0].generated_text)
+    } catch (error) {
+      console.error('Error generating response:', error)
+      setAiResponse('Error generating response. Please make sure you have a valid Hugging Face API token and try again.')
+    } finally {
+      setIsGenerating(false)
+    }
+  }
+
   return (
     <div className="min-h-screen bg-gray-900 text-white">
       <div className="max-w-3xl mx-auto p-8">
@@ -534,19 +576,43 @@ function App() {
             </div>
           </div>
         ) : (
-          <div className="bg-gray-800 p-6 rounded-lg">
+          <div className="bg-gray-800 p-6 rounded-lg space-y-6">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-2xl">Generated Prompt</h2>
-              <button
-                onClick={() => navigator.clipboard.writeText(formatPrompt(answers))}
-                className="px-4 py-2 rounded bg-blue-600 hover:bg-blue-700 transition-colors"
-              >
-                Copy to Clipboard
-              </button>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => navigator.clipboard.writeText(formatPrompt(answers))}
+                  className="px-4 py-2 rounded bg-blue-600 hover:bg-blue-700 transition-colors"
+                >
+                  Copy to Clipboard
+                </button>
+                <button
+                  onClick={generateAIResponse}
+                  disabled={isGenerating}
+                  className="px-4 py-2 rounded bg-green-600 hover:bg-green-700 transition-colors disabled:opacity-50"
+                >
+                  {isGenerating ? 'Generating...' : 'Generate Response'}
+                </button>
+              </div>
             </div>
             <pre className="whitespace-pre-wrap bg-gray-900 p-4 rounded-lg overflow-auto">
               {formatPrompt(answers)}
             </pre>
+            
+            {aiResponse && (
+              <div className="mt-6">
+                <h3 className="text-xl mb-3">AI Response</h3>
+                <div className="bg-gray-900 p-4 rounded-lg whitespace-pre-wrap">
+                  {aiResponse}
+                </div>
+                <button
+                  onClick={() => navigator.clipboard.writeText(aiResponse)}
+                  className="mt-2 px-4 py-2 rounded bg-blue-600 hover:bg-blue-700 transition-colors"
+                >
+                  Copy Response
+                </button>
+              </div>
+            )}
           </div>
         )}
       </div>
