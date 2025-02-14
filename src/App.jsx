@@ -513,13 +513,23 @@ function App() {
   const generateAIResponse = async () => {
     setIsGenerating(true)
     try {
-      const response = await fetch('https://api-inference.huggingface.co/models/HuggingFaceH4/zephyr-7b-beta', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${import.meta.env.VITE_HUGGING_FACE_TOKEN}`},
-        body: JSON.stringify({
-          inputs: `You are a helpful AI assistant specializing in software development. Please analyze this app requirements document and provide a detailed response with:
+      const prompt = formatPrompt(answers)
+      console.log('=== Generated Prompt ===')
+      console.log(prompt)
+      console.log('=== Prompt Length ===')
+      console.log(prompt.length, 'characters')
+
+      // Rough estimate: average English word is 5 characters, and tokens are roughly word pieces
+      const estimatedTokens = Math.ceil(prompt.length / 5)
+      console.log('=== Estimated Tokens ===')
+      console.log(estimatedTokens, 'tokens (rough estimate)')
+
+      if (estimatedTokens > 2048) {
+        throw new Error('Prompt may be too long for the model. Try reducing the length of your answers.')
+      }
+
+      const requestBody = {
+        inputs: `You are a helpful AI assistant specializing in software development. Please analyze this app requirements document and provide a detailed response with:
 1. A summary of the key features and requirements
 2. Suggested technical implementation details
 3. Potential challenges and considerations
@@ -527,17 +537,31 @@ function App() {
 
 Here's the requirements document:
 
-${formatPrompt(answers)}`,
-          parameters: {
-            max_length: 2048,
-            temperature: 0.7,
-            top_p: 0.95,
-            return_full_text: false
-          }
-        })
+${prompt}`,
+        parameters: {
+          max_length: 4096,  // Increased to allow for longer responses
+          temperature: 0.7,
+          top_p: 0.95,
+          return_full_text: false
+        }
+      }
+
+      console.log('=== Request Body ===')
+      console.log(JSON.stringify(requestBody, null, 2))
+
+      const response = await fetch('https://api-inference.huggingface.co/models/HuggingFaceH4/zephyr-7b-beta', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${import.meta.env.VITE_HUGGING_FACE_TOKEN}`
+        },
+        body: JSON.stringify(requestBody)
       })
       
       const data = await response.json()
+      console.log('=== API Response ===')
+      console.log(JSON.stringify(data, null, 2))
+
       if (data.error) {
         throw new Error(data.error)
       }

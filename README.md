@@ -2,6 +2,8 @@
 
 A web application that helps developers create detailed AI development prompts by guiding them through a structured questionnaire about their app requirements.
 
+![AI Prompt Generator Interface](docs/AIPGScreenshot.png)
+
 ## Purpose
 
 This tool streamlines the process of creating comprehensive AI development prompts by:
