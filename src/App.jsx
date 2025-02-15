@@ -6,7 +6,7 @@ const QUESTIONS = [
   {
     id: 'appName',
     category: 'General Overview',
-    question: 'What is the name of the app (if you have one in mind)?',
+    question: 'What is the name of the app?',
     type: 'text'
   },
   {
@@ -18,7 +18,7 @@ const QUESTIONS = [
   {
     id: 'targetAudience',
     category: 'General Overview',
-    question: 'Who is the target audience for this app?',
+    question: 'Who is the target audience?',
     type: 'textarea'
   },
   {
@@ -27,38 +27,30 @@ const QUESTIONS = [
     question: 'Will this be a web app, mobile app, or both?',
     type: 'text'
   },
-  {
-    id: 'inspiration',
-    category: 'General Overview',
-    question: 'Do you have any similar apps in mind for reference or inspiration?',
-    type: 'textarea'
-  },
   // Tech Stack
   {
     id: 'frontend',
     category: 'Tech Stack',
-    question: 'What technologies or frameworks do you want to use for the front end (e.g., React, Vue, Next.js)?',
+    question: 'What technologies or frameworks should be used for the frontend (e.g., React, Next.js, Vue)?',
     type: 'text'
   },
   {
     id: 'backend',
     category: 'Tech Stack',
-    question: 'What back-end technologies or frameworks do you prefer (e.g., Node.js, Django, Firebase)?',
+    question: 'What backend technologies or frameworks should be used (e.g., Node.js, Django, Firebase)?',
     type: 'text'
   },
   {
     id: 'database',
     category: 'Tech Stack',
-    question: 'What database solution do you want (e.g., PostgreSQL, MongoDB, Firebase)?',
+    question: 'What database solution should be used (e.g., PostgreSQL, MongoDB, Firebase, SQLite)?',
     type: 'text'
   },
   {
     id: 'auth',
     category: 'Tech Stack',
-    question: 'Will this app require user authentication?',
-    type: 'yesno',
-    followUp: 'How should authentication work (e.g., email/password, social login, OAuth, magic links)?',
-    followUpType: 'textarea'
+    question: 'Will this app require user authentication? If so, what method (e.g., email/password, OAuth)?',
+    type: 'textarea'
   },
   // Core Features & Functionality
   {
@@ -74,66 +66,10 @@ const QUESTIONS = [
     type: 'textarea'
   },
   {
-    id: 'userRoles',
-    category: 'Core Features & Functionality',
-    question: 'Will the app need to support multiple user roles (e.g., admin, regular user)?',
-    type: 'textarea'
-  },
-  {
     id: 'fileUploads',
     category: 'Core Features & Functionality',
     question: 'Will users be able to upload files or media? If so, what types and formats?',
     type: 'textarea'
-  },
-  {
-    id: 'payments',
-    category: 'Core Features & Functionality',
-    question: 'Will users need to make payments in the app? If yes, which payment processors should be supported (e.g., Stripe, PayPal)?',
-    type: 'textarea'
-  },
-  {
-    id: 'notifications',
-    category: 'Core Features & Functionality',
-    question: 'Should the app include push notifications, emails, or SMS alerts? If so, what kind?',
-    type: 'textarea'
-  },
-  // AI & Automation
-  {
-    id: 'aiFeatures',
-    category: 'AI & Automation',
-    question: 'Should AI handle any part of the app\'s functionality? If yes, what features should AI power (e.g., chatbots, recommendations, summarization)?',
-    type: 'textarea'
-  },
-  {
-    id: 'externalApis',
-    category: 'AI & Automation',
-    question: 'Will the app integrate with external APIs or services? If so, which ones?',
-    type: 'textarea'
-  },
-  // Design & User Experience
-  {
-    id: 'designStyle',
-    category: 'Design & User Experience',
-    question: 'Do you have a preferred design style? (Minimalist, modern, colorful, etc.)',
-    type: 'text'
-  },
-  {
-    id: 'uiFeatures',
-    category: 'Design & User Experience',
-    question: 'Do you need specific UI/UX features such as dark mode, animations, or accessibility options?',
-    type: 'textarea'
-  },
-  {
-    id: 'responsive',
-    category: 'Design & User Experience',
-    question: 'Should the app be responsive and mobile-friendly?',
-    type: 'text'
-  },
-  {
-    id: 'uiLibrary',
-    category: 'Design & User Experience',
-    question: 'Do you have a preferred UI library or component system (e.g., Material UI, Tailwind CSS, Bootstrap)?',
-    type: 'text'
   },
   // Deployment & Hosting
   {
@@ -141,75 +77,6 @@ const QUESTIONS = [
     category: 'Deployment & Hosting',
     question: 'Where do you want to deploy this app (e.g., Vercel, AWS, Firebase)?',
     type: 'text'
-  },
-  {
-    id: 'cicd',
-    category: 'Deployment & Hosting',
-    question: 'Do you need CI/CD integration for automated deployment?',
-    type: 'text'
-  },
-  {
-    id: 'environments',
-    category: 'Deployment & Hosting',
-    question: 'Should the app support multiple environments (e.g., dev, staging, production)?',
-    type: 'text'
-  },
-  // Scalability & Performance
-  {
-    id: 'userScale',
-    category: 'Scalability & Performance',
-    question: 'How many users do you expect initially? How many in the future?',
-    type: 'textarea'
-  },
-  {
-    id: 'trafficOptimization',
-    category: 'Scalability & Performance',
-    question: 'Should the app be optimized for high traffic and scalability?',
-    type: 'textarea'
-  },
-  {
-    id: 'performance',
-    category: 'Scalability & Performance',
-    question: 'Are there any performance concerns or speed optimizations you want to consider?',
-    type: 'textarea'
-  },
-  // Security & Privacy
-  {
-    id: 'security',
-    category: 'Security & Privacy',
-    question: 'Are there any specific security measures you need (e.g., encryption, GDPR compliance)?',
-    type: 'textarea'
-  },
-  {
-    id: 'rbac',
-    category: 'Security & Privacy',
-    question: 'Should the app have role-based access control (RBAC)?',
-    type: 'yesno'
-  },
-  // Additional Considerations
-  {
-    id: 'extraFeatures',
-    category: 'Additional Considerations',
-    question: 'Are there any extra features or customizations you\'d like to include?',
-    type: 'textarea'
-  },
-  {
-    id: 'timeline',
-    category: 'Additional Considerations',
-    question: 'What is your ideal timeline for building this app?',
-    type: 'text'
-  },
-  {
-    id: 'aiTestingDocs',
-    category: 'Additional Considerations',
-    question: 'Would you like AI to generate test cases and documentation for the app?',
-    type: 'yesno'
-  },
-  {
-    id: 'additionalInfo',
-    category: 'Additional Considerations',
-    question: 'Is there anything else I should know before generating the blueprint?',
-    type: 'textarea'
   }
 ]
 
@@ -238,15 +105,7 @@ function formatPrompt(answers) {
   })
 
   // Format the prompt
-  let prompt = `# AI Development Prompt: ${answers.appName || 'New Application'}\n\n`
-  
-  prompt += `## Instructions for AI Assistant\n`
-  prompt += `Please follow these steps when processing this development request:\n\n`
-  prompt += `1. Read all requirements carefully before starting\n`
-  prompt += `2. Generate code based on the structured information below\n`
-  prompt += `3. Follow best practices for the specified tech stack\n`
-  prompt += `4. Implement features in order of priority\n`
-  prompt += `5. Consider security and scalability in all implementations\n\n`
+  let prompt = `# App Specification Summary: ${answers.appName || 'New Application'}\n\n`
 
   prompt += `## App Name & Purpose\n`
   prompt += `${answers.appName || 'New Application'}: ${answers.purpose || 'Purpose to be determined'}\n\n`
@@ -305,30 +164,6 @@ function formatPrompt(answers) {
     prompt += '\n'
   }
 
-  prompt += `## Implementation Guidelines\n`
-  prompt += `1. Start with core functionality first\n`
-  prompt += `2. Follow best practices for the chosen tech stack\n`
-  prompt += `3. Implement proper error handling and validation\n`
-  prompt += `4. Write clean, maintainable, and well-documented code\n`
-  prompt += `5. Consider scalability and performance in the implementation\n`
-  prompt += `6. Include appropriate tests for critical functionality\n\n`
-
-  prompt += `## Development Process\n`
-  prompt += `1. Begin with project setup and basic infrastructure\n`
-  prompt += `2. Implement authentication and user management (if required)\n`
-  prompt += `3. Develop core features in order of priority\n`
-  prompt += `4. Add secondary features and enhancements\n`
-  prompt += `5. Implement UI/UX according to design requirements\n`
-  prompt += `6. Add tests and documentation\n`
-  prompt += `7. Prepare deployment configuration\n\n`
-
-  prompt += `## Additional Notes\n`
-  prompt += `- Provide clear documentation for setup and deployment\n`
-  prompt += `- Include instructions for local development\n`
-  prompt += `- List any required environment variables or configuration\n`
-  prompt += `- Consider implementing proper logging and monitoring\n`
-  prompt += `- Follow security best practices throughout development\n\n`
-
   return prompt
 }
 
@@ -347,6 +182,10 @@ function App() {
       inputRef.current.focus()
     }
   }, [currentQuestionIndex, showFollowUp, showResult])
+
+  useEffect(() => {
+    console.log('isGenerating changed:', isGenerating)
+  }, [isGenerating])
 
   const handlePrevious = () => {
     if (showFollowUp) {
@@ -529,17 +368,68 @@ function App() {
       }
 
       const requestBody = {
-        inputs: `You are a helpful AI assistant specializing in software development. Please analyze this app requirements document and provide a detailed response with:
-1. A summary of the key features and requirements
-2. Suggested technical implementation details
-3. Potential challenges and considerations
-4. Next steps for development
+        inputs: `You are an AI software engineer. Your task is to generate an AI-ready development prompt that can be copied into Cursor Pro to create a fully functional app.  
 
-Here's the requirements document:
+      Instructions:  
+      1. DO NOT generate any code yourself. Instead, generate a structured prompt that can be copied into Cursor Pro.  
+      2. Ensure the prompt is action-oriented and designed for AI-based code generation.  
+      3. The output should be in the following structured format:  
 
-${prompt}`,
+      AI-READY DEVELOPMENT PROMPT
+
+      App Name & Purpose  
+      - Clearly define what the app does and who it serves.  
+
+      Tech Stack  
+      - Frontend: [Framework]  
+      - Backend: [Framework]  
+      - Database: [Database]  
+      - Authentication: [Method]  
+
+      Core Features  
+      1. Feature 1  
+      2. Feature 2  
+      3. Feature 3  
+
+      User Flow  
+      1. Step 1  
+      2. Step 2  
+      3. Step 3  
+
+      Development Tasks for Cursor Pro  
+      1. Project Setup & Dependencies  
+        - Initialize the project with necessary dependencies.  
+        - Set up project structure (frontend/, backend/).  
+
+      2. Database Schema & Models  
+        - Generate database models (models.py).  
+
+      3. API & Backend Logic  
+        - Implement RESTful API endpoints (routes/api.py).  
+
+      4. Frontend Components & UI  
+        - Build UI components (components/OfferCard.vue).  
+
+      5. Integration  
+        - Connect the frontend to the backend (services/api.js).  
+
+      6. Deployment Instructions  
+        - Provide environment variable setup (.env).  
+        - Configure deployment (vercel.json).  
+
+      AI Features (If Applicable)  
+      - Use NLP for search functionality.  
+      - Implement an AI-powered recommendation engine.  
+
+      Additional Notes  
+      - Ensure the prompt is clear, structured, and immediately usable in Cursor Pro.  
+      - The goal is for Cursor Pro to generate the app with minimal modifications.  
+
+      Now, generate the AI-ready development prompt in this format.
+
+      ${prompt}`,
         parameters: {
-          max_length: 4096,  // Increased to allow for longer responses
+          max_length: 4096,
           temperature: 0.7,
           top_p: 0.95,
           return_full_text: false
@@ -548,6 +438,10 @@ ${prompt}`,
 
       console.log('=== Request Body ===')
       console.log(JSON.stringify(requestBody, null, 2))
+
+      // Log the API URL and token presence
+      console.log('=== API Token Present? ===')
+      console.log(!!import.meta.env.VITE_HUGGING_FACE_TOKEN)
 
       const response = await fetch('https://api-inference.huggingface.co/models/HuggingFaceH4/zephyr-7b-beta', {
         method: 'POST',
@@ -558,17 +452,27 @@ ${prompt}`,
         body: JSON.stringify(requestBody)
       })
       
+      // Log the raw response
+      console.log('=== Raw Response ===')
+      console.log('Status:', response.status)
+      console.log('Status Text:', response.statusText)
+      
       const data = await response.json()
-      console.log('=== API Response ===')
+      console.log('=== API Response Data ===')
       console.log(JSON.stringify(data, null, 2))
 
       if (data.error) {
-        throw new Error(data.error)
+        throw new Error(`API Error: ${data.error}`)
       }
+      
+      if (!data[0]?.generated_text) {
+        throw new Error('No generated text in response')
+      }
+      
       setAiResponse(data[0].generated_text)
     } catch (error) {
-      console.error('Error generating response:', error)
-      setAiResponse('Error generating response. Please make sure you have a valid Hugging Face API token and try again.')
+      console.error('Detailed error:', error)
+      setAiResponse(`Error generating response: ${error.message}. Please make sure you have a valid Hugging Face API token and try again.`)
     } finally {
       setIsGenerating(false)
     }
